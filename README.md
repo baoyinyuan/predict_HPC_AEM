@@ -6,5 +6,5 @@
 4. Script named as "RF_github.R " provides the details to train machine learning model with random forest algorithm.
 5. Script named as "Asite_predict_CoFe.R" provides the details to predict HPC of AB_{1-x}B1_{x}O3-type oxides.
 6. Script named as "AA1B_descriptor_customize.R" provides the details to customize the descriptors, which would be used for the following model training and prdiction.
-7. File names as "elements_data.csv" provides all the quantative attributes to represent alphabetic element name.  
-8. 
+7. File named as "elements_data.csv" provides all the quantative attributes to represent alphabetic element name.  
+8. File named as "experiment_data" are the detailed sample data corresponding the file of "Original dataset for training models_with_References.xls".
