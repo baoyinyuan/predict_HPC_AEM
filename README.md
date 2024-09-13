@@ -8,3 +8,4 @@
 6. Script named as "AA1B_descriptor_customize.R" provides the details to customize the descriptors, which would be used for the following model training and prdiction.
 7. File named as "elements_data.csv" provides all the quantative attributes to represent alphabetic element name.  
 8. File named as "experiment_data" are the detailed sample data corresponding the file of "Original dataset for training models_with_References.xls".
+9. The zip file named as "Examples of DFT calculation files.zip" contains all the source files for DFT calculation.
