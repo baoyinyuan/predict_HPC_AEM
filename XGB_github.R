@@ -58,34 +58,6 @@ AA1BB1O3_sample <- df_expe
 AA1BB1O3_sample %>% head(3)
 dim(AA1BB1O3_sample)
 
-# ######
-# # import data of changable experiment condition 
-# df_expe2 <- read_excel("experiment_data_2.xlsx", sheet = "PredictOH")%>%
-#   as.data.frame()
-# dim(df_expe2)
-# df_expe2$eletrode <- as.factor(df_expe2$eletrode)
-# df_expe2 %>% head(2)
-# 
-# ggplot(df_expe2, aes(eletrode, HPC)) +
-#   geom_violin(aes(fill = eletrode)) +
-#   scale_x_discrete(labels = c("Electrolyte","Eletrode")) +
-#   labs(x = "Sample type", y = "HPC") +
-#   theme(legend.position = "none")
-#   
-# 
-# df_expe_eletrode <- df_expe2[df_expe2$eletrode == 1,]
-# df_expe_eletrode
-# dim(df_expe_eletrode)
-# df_expe %>% head(3)
-# specify the input sample using only eletrode
-# (df_expe_colname <- df_expe_eletrode %>% colnames()) 
-# 
-# AA1BB1O3_sample <- data.frame(matrix(ncol = length(df_expe_colname), nrow = 0,
-#                                      dimnames = list(NULL, df_expe_colname)))
-# AA1BB1O3_sample <- df_expe_eletrode
-# AA1BB1O3_sample %>% head(3)
-# dim(AA1BB1O3_sample)
-
 #-----------------------------
 # 2. Descriptor customization
 #-----------------------------
@@ -295,51 +267,8 @@ ggsave(filename = "xgb.true_pred_ci_plt_rep10cv10_Asite_20240907.tiff",
        compression = "lzw")  
 
 
-# ######
-# # ggplot
-# xgb.true_pred_plt <- ggplot(xgb.true_pred, aes(x = Truth, y = Pred, color = Repeats)) +
-#   geom_point(alpha = 0.7) +
-#   geom_abline(intercept = 0, slope = 1, color = "red", linewidth = 0.8) +
-#   labs(x = "True values", y = "Predicted values") + 
-#   scale_x_continuous(limits = c(0, 0.4), expand = c(0.02,0)) +
-#   theme_bw(base_size=12) +
-#   theme(plot.margin = unit(c(3, 1, 1, 1), "lines"),
-#         axis.text.x=element_text(size=10, angle = 0, vjust=0.5, hjust = 1, colour = "black"),
-#         axis.text.y=element_text(size=10, colour = "black"),
-#         axis.title=element_text(size=12, colour = "black", face = "bold"),
-#         plot.title = element_text(size = 11, face="bold"),
-#         legend.background = element_rect(fill="transparent",
-#                                          linewidth = 0.3, linetype = "solid",
-#                                          colour = "black"),
-#         legend.box.background = element_rect(colour = "black"),
-#         legend.title=element_text(size= 8, colour = "black"),
-#         legend.text=element_text(size= 8, colour = "black"),
-#         legend.position = c("none"),#"left",#c(.75, .95),
-#         legend.direction="horizontal",
-#         legend.justification = c("right", "top"),
-#         panel.border = element_rect(colour = "black", fill=NA, linewidth = 0.8)
-#   ) +
-#   annotate(geom = "text", x = 0.32, y =0.38, size= 5, col = "red",
-#            label = paste0("1:1 line"), hjust = "left") +
-#   annotate(geom = "text", x = 0.05, y = 0.45, size= 4, col = "black", fontface = "bold",
-#            label = paste0("RMSE = ", xgb.error_table[1,1], "\U00B1", xgb.error_table[1,2],";")) +
-#   annotate(geom = "text", x = 0.185, y = 0.45, size= 4, col = "black", fontface = "bold",
-#            label = paste0("MAE = ", xgb.error_table[2,1],"\U00B1", xgb.error_table[2,2], ";")) +
-#   annotate(geom = "text", x = 0.33, y = 0.45, size= 4, col = "black", fontface = "bold",
-#            label = paste0("R-squared = ", xgb.error_table[3,1], "\U00B1", xgb.error_table[3,2])) +
-#   coord_cartesian(xlim = c(0, 0.4), ylim = c(0, 0.4), expand = TRUE, clip="off")
-# 
-# xgb.true_pred_plt  
-# 
-# #
-# ggsave(filename = "xgb.true_pred_plt_rep10cv10_Asite.tiff",
-#        plot = xgb.true_pred_plt,
-#        width = 16,  # <=19.05cm
-#        height = 12, # <=22.225cm
-#        units= "cm",
-#        dpi= 300,
-#        compression = "lzw")  
-#####
+
+
 
 
 ## residual plot: true values - predicted values
@@ -443,44 +372,6 @@ ggsave(filename = "xgb.true_resi_byRepeat_plt_rep10cv10_Asite_20240907.tiff",
        dpi= 300,
        compression = "lzw")   
 
-
-  
-# ##### 
-# library(cowplot)
-# xgb.res_plt <- ggplot(xgb.res_df, aes(x = Truth, y = Error, color = Repeats)) +
-#   geom_point(alpha = 0.7) +
-#   geom_hline(yintercept = 0, linewidth = 0.6) +
-#   labs(y = "Residuals (True values - predicted values)", x = "True values") +
-#   theme_bw(base_size=12) +
-#   theme(plot.margin = unit(c(1, 1, 1, 1), "lines"),
-#         axis.text.x=element_text(size=10, angle = 0, vjust=0.5, hjust = 1, colour = "black"),
-#         axis.text.y=element_text(size=10, colour = "black"),
-#         axis.title=element_text(size=12, colour = "black", face = "bold"),
-#         plot.title = element_text(size = 11, face="bold"),
-#         legend.background = element_rect(fill="transparent",
-#                                          size = 0.3, linetype = "solid",
-#                                          colour = "black"),
-#         legend.box.background = element_rect(colour = "black"),
-#         # panel.grid= element_blank(),
-#         legend.title=element_text(size= 8, colour = "black"),
-#         legend.text=element_text(size= 8, colour = "black"),
-#         # legend.position =c(.55, .95),#"left",#c(.75, .95),
-#         legend.position = "top",#"left",#c(.75, .95),
-#         legend.direction="horizontal",
-#         legend.justification = c("top"),
-#         panel.border = element_rect(colour = "black", fill=NA, size= 1.5)
-#         ) +
-#   guides(color = guide_legend(nrow = 1, byrow = TRUE))
-# xgb.res_plt
-# 
-# #
-# ggsave(filename = "xgb.res_plt_rep10cv10.tiff",
-#        plot = xgb.res_plt,
-#        width = 16,  # <=19.05cm
-#        height = 12, # <=22.225cm
-#        units= "cm",
-#        dpi= 300,
-#        compression = "lzw")
 ############
 
 ##-------------
