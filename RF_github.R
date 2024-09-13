@@ -110,7 +110,7 @@ params <- makeParamSet(makeIntegerParam("ntree", lower = 1, upper = 600), # nbr 
                        )
 
 # set resampling strategy
-r_desc <- makeResampleDesc("RepCV", folds = 5L, reps = 5)
+r_desc <- makeResampleDesc("RepCV", folds = 10L, reps = 10)
 r_inst <- makeResampleInstance(r_desc, task = traintask)
 
 # search strategy
